@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css'; // optional if you want to separate styles
+import './Home.css';
 
 const Home = () => {
   return (
-    <div style={styles.container}>
+    <div className="home">
       <h1 style={styles.logo}>HealthConnect</h1>
       <p style={styles.tagline}>Your smart solution for booking healthcare appointments</p>
       <div>
@@ -16,11 +16,6 @@ const Home = () => {
 };
 
 const styles = {
-  container: {
-    textAlign: 'center',
-    marginTop: '5rem',
-    padding: '1rem'
-  },
   logo: {
     color: '#007bff',
     fontSize: '3rem',
