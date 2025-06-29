@@ -8,6 +8,9 @@ const Dashboard = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [sortAsc, setSortAsc] = useState(true);
   const navigate = useNavigate();
 
   const isAdmin = user?.role === 'admin' || user?.role === 'doctor';
@@ -17,8 +20,8 @@ const Dashboard = () => {
       try {
         const res = await axios.get(
           isAdmin
-            ? 'http://localhost:5001/api/appointments'
-            : 'http://localhost:5001/api/appointments/me',
+            ? 'https://healthconnect-backend.onrender.com/api/appointments'
+            : 'https://healthconnect-backend.onrender.com/api/appointments/me',
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -46,7 +49,7 @@ const Dashboard = () => {
   const handleStatusChange = async (id, newStatus) => {
     try {
       await axios.patch(
-        `http://localhost:5001/api/appointments/${id}`,
+        `https://healthconnect-backend.onrender.com/api/appointments/${id}`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -59,6 +62,20 @@ const Dashboard = () => {
       console.error('Status update failed:', err);
     }
   };
+
+  const toggleSortOrder = () => {
+    setSortAsc(!sortAsc);
+  };
+
+  const filteredAppointments = appointments
+    .filter((appt) =>
+      appt.reason.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      new Date(appt.date).toLocaleDateString().includes(searchTerm)
+    )
+    .filter((appt) => !statusFilter || appt.status === statusFilter)
+    .sort((a, b) =>
+      sortAsc ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date)
+    );
 
   return (
     <div style={{ padding: '2rem' }}>
@@ -79,11 +96,33 @@ const Dashboard = () => {
             border: 'none',
             borderRadius: '5px',
             cursor: 'pointer',
+            marginLeft: '1rem',
           }}
         >
           Book New Appointment
         </button>
       )}
+
+      <div style={{ margin: '1rem 0' }}>
+        <input
+          type="text"
+          placeholder="Search by reason or date"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{ padding: '0.5rem', marginRight: '1rem' }}
+        />
+
+        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} style={{ marginRight: '1rem' }}>
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+
+        <button onClick={toggleSortOrder}>
+          Sort by Date {sortAsc ? '↑' : '↓'}
+        </button>
+      </div>
 
       <h3>{isAdmin ? 'All Appointments' : 'Your Appointments'}</h3>
 
@@ -91,15 +130,14 @@ const Dashboard = () => {
         <p>Loading appointments...</p>
       ) : error ? (
         <p style={{ color: 'red' }}>{error}</p>
-      ) : appointments.length === 0 ? (
-        <p>No appointments found.</p>
+      ) : filteredAppointments.length === 0 ? (
+        <p>No appointments found. Book your first one today!</p>
       ) : (
         <ul>
-          {appointments.map((appt) => (
+          {filteredAppointments.map((appt) => (
             <li key={appt._id} style={{ marginBottom: '1rem' }}>
               <strong>User:</strong> {appt.user?.name || 'N/A'} <br />
-              <strong>Date:</strong>{' '}
-              {new Date(appt.date).toLocaleString()} <br />
+              <strong>Date:</strong> {new Date(appt.date).toLocaleString()} <br />
               <strong>Reason:</strong> {appt.reason} <br />
               <strong>Status:</strong> {appt.status}
               {isAdmin && (
