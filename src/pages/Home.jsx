@@ -1,17 +1,26 @@
+// src/pages/Home.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Home = () => {
   return (
-    <div className="home">
-      <h1 style={styles.logo}>HealthConnect</h1>
-      <p style={styles.tagline}>Your smart solution for booking healthcare appointments</p>
-      <div>
-        <Link to="/login" style={styles.button}>Login</Link>
-        <Link to="/register" style={{ ...styles.button, backgroundColor: '#28a745' }}>Register</Link>
+    <>
+      <Header />
+
+      <div className="home">
+        <h1 style={styles.logo}>HealthConnect</h1>
+        <p style={styles.tagline}>Your smart solution for booking healthcare appointments</p>
+        <div>
+          <Link to="/login" style={styles.button}>Login</Link>
+          <Link to="/register" style={{ ...styles.button, backgroundColor: '#28a745' }}>Register</Link>
+        </div>
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
 };
 
