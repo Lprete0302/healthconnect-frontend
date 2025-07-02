@@ -1,25 +1,29 @@
+// src/pages/Home.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import heroImage from '../assets/hero-banner.png'; // if needed
 
 const Home = () => {
   return (
     <>
       <Header />
 
-      <div className="home">
-        <h1 style={styles.logo}>HealthConnect</h1>
+      <div className="home" style={styles.hero}>
+        <h1 style={styles.title}>HealthConnect</h1>
+        <p style={styles.subtitle}>Find the best hospitals and ambulance services near you</p>
         <p style={styles.tagline}>Your smart solution for booking healthcare appointments</p>
 
-        {/* Emergency notice */}
-        <p style={styles.notice}>🚨 If you are experiencing an emergency, please call 911 immediately.</p>
+        <p style={styles.notice}>
+          🚨 If you are experiencing an emergency, please call 911 immediately.
+        </p>
 
-        <div>
-          <Link to="/login" style={styles.button}>Login</Link>
-          <Link to="/register" style={{ ...styles.button, backgroundColor: '#28a745' }}>Register</Link>
-          <Link to="/hospitals" style={{ ...styles.button, backgroundColor: '#6c757d' }}>Hospitals</Link>
+        <div style={styles.buttons}>
+          <Link to="/login" style={styles.login}>Login</Link>
+          <Link to="/register" style={styles.register}>Register</Link>
+          <Link to="/hospitals" style={styles.hospitals}>Hospitals</Link>
         </div>
       </div>
 
@@ -29,29 +33,61 @@ const Home = () => {
 };
 
 const styles = {
-  logo: {
-    color: '#007bff',
+  hero: {
+    backgroundImage: `url(${heroImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    padding: '6rem 1rem',
+    textAlign: 'center',
+    color: '#fff',
+  },
+  title: {
     fontSize: '3rem',
     fontWeight: 'bold',
     marginBottom: '1rem',
+    color: '#fff',
+  },
+  subtitle: {
+    fontSize: '1.5rem',
+    marginBottom: '0.5rem',
   },
   tagline: {
-    fontSize: '1.2rem',
+    fontSize: '1.1rem',
     marginBottom: '2rem',
-    color: '#333',
   },
   notice: {
-    color: '#dc3545',
+    color: '#ff4d4f',
     fontWeight: 'bold',
-    marginBottom: '1rem',
+    marginBottom: '2rem',
   },
-  button: {
-    textDecoration: 'none',
-    color: '#fff',
+  buttons: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '1rem',
+    flexWrap: 'wrap',
+  },
+  login: {
     backgroundColor: '#007bff',
+    color: '#fff',
     padding: '0.75rem 1.5rem',
-    borderRadius: '5px',
-    margin: '0 1rem',
+    textDecoration: 'none',
+    borderRadius: '6px',
+    fontWeight: 'bold',
+  },
+  register: {
+    backgroundColor: '#28a745',
+    color: '#fff',
+    padding: '0.75rem 1.5rem',
+    textDecoration: 'none',
+    borderRadius: '6px',
+    fontWeight: 'bold',
+  },
+  hospitals: {
+    backgroundColor: '#6c757d',
+    color: '#fff',
+    padding: '0.75rem 1.5rem',
+    textDecoration: 'none',
+    borderRadius: '6px',
     fontWeight: 'bold',
   },
 };
