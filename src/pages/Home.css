@@ -1,15 +1,19 @@
-/* Home.css */
 .home {
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 0;
+  padding: 5rem 1rem;
+  min-height: 100vh;
+  background-image: url('../assets/hero-banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .home h1, .home p {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
-// Clean redeploy to remove Ghana
-/* Home.css */
 
-/* Center content on the Home page */
-.home {
-  text-align: center;
-  margin-top: 5rem;
 }
-
-/* ✅ Clean redeploy to remove Ghana label and ensure branding is reset */
