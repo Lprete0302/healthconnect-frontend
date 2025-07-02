@@ -1,55 +1,59 @@
-// src/pages/Hospitals.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
+import './Home.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-const Hospitals = () => {
-  // Sample static data for now — you can replace with live API later
-  const hospitals = [
-    { name: 'Saint Louis Medical Center', address: '1234 Main St, St. Louis, MO', availability: 'Appointments available' },
-    { name: 'Unity HealthCare', address: '5678 West Ave, St. Louis, MO', availability: 'Next available: Tomorrow' },
-    { name: 'North County Hospital', address: '9012 Broadway Blvd, St. Louis, MO', availability: 'Walk-ins welcome' },
-  ];
-
+const Home = () => {
   return (
-    <div style={styles.container}>
-      <h2 style={styles.heading}>Nearby Hospitals</h2>
-      <ul style={styles.list}>
-        {hospitals.map((hospital, index) => (
-          <li key={index} style={styles.card}>
-            <h3>{hospital.name}</h3>
-            <p>{hospital.address}</p>
-            <p style={styles.availability}>{hospital.availability}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <Header />
+
+      <div className="home">
+        <h1 style={styles.logo}>HealthConnect</h1>
+        <p style={styles.tagline}>Your smart solution for booking healthcare appointments</p>
+
+        {/* Emergency notice */}
+        <p style={styles.notice}>🚨 If you are experiencing an emergency, please call 911 immediately.</p>
+
+        <div>
+          <Link to="/login" style={styles.button}>Login</Link>
+          <Link to="/register" style={{ ...styles.button, backgroundColor: '#28a745' }}>Register</Link>
+          <Link to="/hospitals" style={{ ...styles.button, backgroundColor: '#6c757d' }}>Hospitals</Link>
+        </div>
+      </div>
+
+      <Footer />
+    </>
   );
 };
 
 const styles = {
-  container: {
-    padding: '2rem',
-    textAlign: 'center',
-  },
-  heading: {
-    fontSize: '2rem',
-    marginBottom: '2rem',
+  logo: {
     color: '#007bff',
+    fontSize: '3rem',
+    fontWeight: 'bold',
+    marginBottom: '1rem',
   },
-  list: {
-    listStyle: 'none',
-    padding: 0,
+  tagline: {
+    fontSize: '1.2rem',
+    marginBottom: '2rem',
+    color: '#333',
   },
-  card: {
-    backgroundColor: '#fff',
-    padding: '1.5rem',
-    borderRadius: '8px',
-    marginBottom: '1.5rem',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+  notice: {
+    color: '#dc3545',
+    fontWeight: 'bold',
+    marginBottom: '1rem',
   },
-  availability: {
-    color: '#28a745',
+  button: {
+    textDecoration: 'none',
+    color: '#fff',
+    backgroundColor: '#007bff',
+    padding: '0.75rem 1.5rem',
+    borderRadius: '5px',
+    margin: '0 1rem',
     fontWeight: 'bold',
   },
 };
 
-export default Hospitals;
+export default Home;

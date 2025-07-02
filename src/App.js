@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Appointments from './pages/Appointments';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import Hospitals from './pages/Hospitals';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/hospitals" element={<Hospitals />} />
           <Route
             path="/dashboard"
             element={
@@ -33,14 +35,11 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* 404 fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </AuthProvider>
   );
 }
-
-// Trigger redeploy
 
 export default App;
