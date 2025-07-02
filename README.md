@@ -1,30 +1,34 @@
 # 💻 HealthConnect Frontend
 
-This is the frontend for the **HealthConnect** web and mobile-friendly healthcare appointment booking app. Built with React and Axios, it connects seamlessly with the HealthConnect backend for user authentication and appointment management.
+This is the frontend for **HealthConnect**, a full-stack, mobile-friendly healthcare appointment booking application. Built with **React** and **Axios**, it connects seamlessly to the HealthConnect backend to handle **user authentication**, **secure dashboard access**, and **appointment scheduling**.
+
+---
 
 ## 🌟 Features
 
-- User registration and login
-- Auth-protected dashboard
-- View, book, and manage appointments
-- Mobile-friendly responsive UI
-- Axios API calls to backend
+- 🔐 **User Registration & Login** with JWT
+- 🧑‍⚕️ **Protected Dashboard** based on authentication
+- 📅 **Book, View & Filter Appointments**
+- ⚙️ **Search, Sort, and Filter** by status and reason
+- 📱 **Responsive Design** for desktop and mobile
+- 🔄 **Persistent Auth** with localStorage
+- 🚫 Custom 404 error page
+
+---
 
 ## 🛠 Tech Stack
 
-- React
-- React Router
-- Axios
-- Context API (Auth)
-- Tailwind CSS (or your styling system)
+- **Frontend**: React, React Router, Axios, Context API
+- **Styling**: Tailwind CSS (or your preferred system)
+- **Auth**: JSON Web Tokens (JWT)
+- **API**: HealthConnect backend (Node.js, Express, MongoDB)
+- **Deployment**: Vercel (Frontend), Render (Backend)
 
-## 🔐 .env Setup
+---
 
-Create a `.env` file in the root:
+## 🔐 Environment Setup
+
+Create a `.env` file in the root of the project:
 
 ```env
-REACT_APP_API_BASE_URL=https://your-backend-url.com/api
-## 🚀 Live Demo
-
-Frontend: [https://healthconnect.vercel.app](https://healthconnect.vercel.app)  
-Backend API: [https://healthconnect-backend-j0j9.onrender.com/api](https://healthconnect-backend-j0j9.onrender.com/api)
+REACT_APP_API_BASE_URL=https://healthconnect-backend-j0j9.onrender.com/api
