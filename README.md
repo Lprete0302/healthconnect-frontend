@@ -24,3 +24,7 @@ Create a `.env` file in the root:
 
 ```env
 REACT_APP_API_BASE_URL=https://your-backend-url.com/api
+## 🚀 Live Demo
+
+Frontend: [https://healthconnect.vercel.app](https://healthconnect.vercel.app)  
+Backend API: [https://healthconnect-backend-j0j9.onrender.com/api](https://healthconnect-backend-j0j9.onrender.com/api)
