@@ -3,3 +3,13 @@
   text-align: center;
   margin-top: 5rem;
 }
+// Clean redeploy to remove Ghana
+/* Home.css */
+
+/* Center content on the Home page */
+.home {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+/* ✅ Clean redeploy to remove Ghana label and ensure branding is reset */
