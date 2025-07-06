@@ -1,6 +1,7 @@
 /* src/pages/Home.css */
+
 .home-hero {
-  background-image: url('../assets/hero-banner.png');
+  /* Removed background-image to avoid missing file error */
   background-size: cover;
   background-position: center;
   padding: 6rem 1rem;
